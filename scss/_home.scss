@@ -7,6 +7,12 @@
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
+        @include media('<=tablet') {
+            background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.3) 0%), url('../images/banner-bg.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     }
     &-content {
         &-heading {
@@ -15,6 +21,19 @@
             line-height: 1.2em;
             color: $p-col-txt;
             font-weight: 600;
+            
+            @include media('<=desktop') {
+                font-size: 50px;
+            }
+            @include media('<=tablet') {
+                font-size: 50px;
+            }
+            @include media('<=lg-phone') {
+                font-size: 40px;
+            }
+            @include media('<=phone') {
+                font-size: 30px;
+            }
         }
         &-subheading {
             color: $p-col-link;
@@ -31,12 +50,41 @@
             width: 100%;
             object-fit: cover;
             border-radius: 10px;
+            @include media('<=tablet') {
+                height: 350px;
+            }
+        }
+    }
+    &-desc-wrap {
+        h1 {
+            @include media('<=desktop') {
+                font-size: 40px;
+            }
+            @include media('<=tablet') {
+                font-size: 30px;
+            }
+            @include media('<=phone') {
+                font-size: 25px;
+            }
         }
     }
 }
 
 // COURSES
 .h_courses {
+    &-heading-wrap {
+        h1 {
+            @include media('<=desktop') {
+                font-size: 40px;
+            }
+            @include media('<=tablet') {
+                font-size: 30px;
+            }
+            @include media('<=phone') {
+                font-size: 25px;
+            }
+        }
+    }
     &-slider-inner-wrap {
         display: flex!important;
         justify-content: center;
@@ -98,6 +146,9 @@
             color: $p-col-txt;
             transition: .5s;
             font-weight: 600;
+            @include media('<=desktop') {
+                font-size: 20px;
+            }
         }
     }
     &-slider {
@@ -148,6 +199,19 @@
 
 // TUTORS
 .h_tutors {
+    &-heading-wrap {
+        h1 {
+            @include media('<=desktop') {
+                font-size: 40px;
+            }
+            @include media('<=tablet') {
+                font-size: 30px;
+            }
+            @include media('<=phone') {
+                font-size: 25px;
+            }
+        }
+    }
     &-slider-inner-wrap {
         display: flex!important;
         justify-content: center;
@@ -231,6 +295,17 @@
         z-index: 1;
         h4 {
             color: $p-col-txt;
+            
+            @include media('<=desktop') {
+                font-size: 18px;
+            }
+            @include media('<=tablet') {
+                font-size: 20px;
+            }
+        }
+        @include media('<=desktop') {
+            left: 1rem;
+            right: 1rem;
         }
     }
     &-socials {
@@ -298,6 +373,19 @@
 
 // TESTIMONIALS
 .h_testi {
+    &-heading-wrap {
+        h1 {
+            @include media('<=desktop') {
+                font-size: 40px;
+            }
+            @include media('<=tablet') {
+                font-size: 30px;
+            }
+            @include media('<=phone') {
+                font-size: 25px;
+            }
+        }
+    }
     &-slider-inner-wrap {
         display: flex!important;
         justify-content: center;

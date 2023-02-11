@@ -71,5 +71,29 @@
                 }
             }
         }
+        &-toggler {
+            a {
+                font-size: 25px;
+                color: $p-col;
+            }
+        }
+        &-mobile {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: $p-col-dark;
+            width: 50%;
+            height: 100vh;
+            padding: 30px;
+
+            li {
+                margin-bottom: 20px;
+                a {
+                    color: $p-col-light;
+                    font-size: 20px;
+                }
+            }
+        }
     }
 }

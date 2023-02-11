@@ -112,6 +112,9 @@ body {
 // SECTION PADDING
 .sec-pad {
     padding: 80px 0 ;
+    @include media('<=desktop') {
+        padding: 50px 0;
+    }
 }
 
 
@@ -223,7 +226,7 @@ footer {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: $p-col-desc;
+    background: $p-col-txt;
 }
 
 ::-webkit-scrollbar-thumb:hover {
