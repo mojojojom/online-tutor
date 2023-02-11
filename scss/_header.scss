@@ -86,6 +86,9 @@
             width: 50%;
             height: 100vh;
             padding: 30px;
+            @include media('<=lg-phone') {
+                width: 100%;
+            }
 
             li {
                 margin-bottom: 20px;

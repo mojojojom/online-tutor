@@ -41,7 +41,7 @@
                             <li><a class="c-btn c-btn-sm c-btn-sm-primary t-light" href="#loginModal" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
                         </ul>
                     </div>
-                    <div class="main_nav-toggler">
+                    <div class="main_nav-toggler d-flex d-lg-none">
                         <a href="#"><i class="fa-solid fa-bars"></i></a>
                     </div>
                     <div class="main_nav-mobile">
@@ -820,7 +820,9 @@
         $('.main_nav-toggler a').on('click', function(e) {
             e.preventDefault();
 
-            $('.main_nav-mobile').slideToggle();
+            // $('.main_nav-mobile').slideToggle();
+            $('.main_nav-mobile').toggle();
+            // $('.main_nav-mobile').animate({"left" : "-00vw"}, "slow");
             
         })
 
