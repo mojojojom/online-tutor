@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+// FONTS
+$p-font: 'Poppins', sans-serif;
+$s-font: 'Playfair Display', serif;
+
+// COLORS
+$p-col: hsl(227,97,59);
+$p-col-link: hsl(0, 0%, 33%);
+$p-col-light: hsl(0, 0%, 100%);
+$p-col-txt: hsl(216,96,12);
+$p-col-dark: hsl(216, 100%, 5%);
+$p-col-hover: hsl(229,88,93);
+$bg-light: hsl(0, 0%, 100%);
+$bg-p: hsl(227,97,59);
+$p-btn-hover: hsl(228, 67%, 51%);
+$p-btn-hover-sec: hsl(230, 88%, 93%);
+$modal-btn: hsl(240, 4%, 95%);
+$modal-btn-hover: hsl(0, 0%, 86%);
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+body {
+    font-family: $p-font;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+// SCROLL TO TOP
+.scroll-to-top {
+    display: none;
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    transition: all ease-in-out 300ms;
+    a {
+        i {
+            font-size: 30px;
+            color: $p-col;
+        }
+    }
+}
+
+// BUTTONS
+.c-btn {
+    // text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    transition: all ease-in-out 300ms;
+    font-size: 14px;
+    &-sm {
+        padding: 5px 15px;
+        &-primary {
+            background-color: $bg-p;
+        }
+    }
+    &-primary {
+        color: $p-col-light;
+        background-color: $bg-p;
+        padding: 10px 25px;
+        font-weight: 500;
+        border: 1px solid $bg-p;
+        &-outline {
+            border: 1px solid $bg-p;
+            background: unset;
+            padding: 10px 25px;
+            font-weight: 500;
+            color: $p-col;
+            &:hover {
+                background-color: $bg-p;
+                color: $p-col-light;
+            }
+        }
+        &:hover {
+            background: $p-btn-hover;
+        }
+    }
+    &-inline {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+// TEXTS
+.t-light {
+    color: $p-col-light!important;
+}
+.t-primary {
+    color: $p-col!important;
+}
+.t-dark {
+    color: $p-col-txt!important;
+}
+.t-desc {
+    color: $p-col-link!important;
+}
+
+// SECTION PADDING
+.sec-pad {
+    padding: 80px 0 ;
+}
+
+
+
+// LOGIN MODAL
+.login_ {
+    &modal-body {
+        padding: 24px;
+        p {
+            color: $p-col-link;
+        }
+        a.choices {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            background: $modal-btn;
+            border-radius: 5px;
+            color: $p-col-txt;
+            font-weight: 500;
+            transition: all ease-in-out 300ms;
+            &:hover {
+                background-color: $bg-p;
+                color: $p-col-light;
+            }
+        }
+    }
+    &as_tutor-wrap,
+    &as_tutee-wrap,
+    &as_admin-wrap {
+        display: none;
+    }
+    &tutor {
+        &_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $bg-p;
+            color: $p-col-light;
+            transition: all ease-in-out 300ms;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 0;
+        }
+    }
+    &tutee {
+        &_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $bg-p;
+            color: $p-col-light;
+            transition: all ease-in-out 300ms;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 0;
+        }
+    }
+    &admin {
+        &_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $bg-p;
+            color: $p-col-light;
+            transition: all ease-in-out 300ms;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 0;
+        }
+    }
+}
+
+
+
+// FOOTER
+.footer {
+    &_logo-wrap {
+        a {
+            color: $p-col-light;
+            font-size: 30px;
+            font-weight: bolder;
+        }
+    }
+    &_copyright-wrap {
+        p {
+            color: $p-col-light;
+            a {
+                color: $p-col-light;
+            }
+        }
+    }
+}
+footer {
+    background-color: $p-col-dark;
+    padding: 20px 0;
+}
+
+
+// SCROLLBAR
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: $p-col-light;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $p-col-desc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $p-col;
+}
