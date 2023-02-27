@@ -1,0 +1,77 @@
+.c_course {
+    &-banner {
+        &-wrap {
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+    }
+    &-left {
+        &-nav {
+            &-search {
+                &-wrap {
+                    border: 1px solid #ced4da;
+                    border-radius: .375rem;
+                    padding: 2px;
+                    position: relative;
+                    input {
+                        border: none;
+                        outline: none;
+                        width: 85%;
+                        &:hover,
+                        &:active,
+                        &:focus {
+                            border: none!important;
+                            outline: none!important;
+                            box-shadow: none!important;
+                        }
+                    }
+                }
+                &-btn {
+                    a {
+                        background-color: $p-col;
+                        position: absolute;
+                        right: 2px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        padding: 5px 10px;
+                        border-radius: .375rem;
+                        color: $p-col-light;
+                    }
+                }
+            }
+        }
+    }
+    &-card {
+        &-wrap {
+            height: 130px;
+        }
+        height: 100%;
+        transition: all ease-in-out 300ms;
+        &:hover {
+            background-color: $p-col;
+            * {
+                color: $p-col-light;
+                transition: all ease-in-out 300ms;
+            }
+        }
+        .card-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &-title {
+            &-wrap {
+                h6 {
+                    color: $p-col-dark;
+                }
+                p {
+                    color: $p-col-link;
+                    transition: all ease-in-out 300ms;
+                    font-size: 14px;
+                    // margin-top: 30px;
+                    // opacity: 0;
+                }
+            }
+        }
+    }
+}

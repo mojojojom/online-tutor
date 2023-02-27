@@ -99,7 +99,7 @@
             .h_courses-title-wrap {
                 background: $bg-p;
                 border-color: $bg-p;
-                h4 {
+                h6 {
                     color: $p-col-light;
                 }
             }
@@ -142,12 +142,15 @@
         padding: 18px;
         z-index: -1;
         transition: .5s;
-        h4 {
+        h6 {
             color: $p-col-txt;
             transition: .5s;
             font-weight: 600;
             @include media('<=desktop') {
                 font-size: 20px;
+            }
+            @include media('<=lg-phone') {
+                font-size: 16px;
             }
         }
     }
@@ -193,6 +196,11 @@
                     color: $p-col-light;
                 }
             }
+        }
+    }
+    &-inner {
+        &-slider {
+            padding-bottom: 60px;
         }
     }
 }
@@ -401,6 +409,13 @@
             object-fit: cover;
             margin: 0 auto;
             position: relative;
+            padding: 10px;
+        }
+        h4 {
+            @include media('<=lg-phone') {
+                font-size: 18px;
+                margin-bottom: 2px;
+            }
         }
     }
     &-text-wrap {

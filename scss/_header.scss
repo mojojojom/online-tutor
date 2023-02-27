@@ -1,5 +1,4 @@
 #main_header {
-    // background-color: $bg-light;
     transition: background 0.3s;
     position: fixed;
     top: 0;
@@ -19,11 +18,25 @@
     z-index: 999999;
 }
 .main {
+    &_header {
+        @include media('<=tablet')
+        {
+            background-color: $bg-light;
+        }
+    }
     &_nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 20px 0;
+        @include media('<=tablet')
+        {
+            padding: 5px 0;
+        }
+        @include media('<=lg-phone')
+        {
+            padding: 0;
+        }
         &-hr {
             display: block;
             height: 25px;
@@ -37,14 +50,14 @@
             }
         }
         &-links {
-            ul {
+            .main_ul {
                 display: flex;
                 align-items: center;
                 margin-bottom: 0;
                 list-style-type: none;
                 gap: 20px;
                 li {
-                    a {
+                    a, button {
                         margin-bottom: 0;
                         color: $p-col-link;
                         text-align: center;
@@ -68,7 +81,10 @@
                             }
                         }
                     }
-                }
+                }   
+            }
+            @include media('<=tablet') {
+                gap: 0px;
             }
         }
         &-toggler {
@@ -78,23 +94,43 @@
             }
         }
         &-mobile {
-            display: none;
+            // display: none;
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             background-color: $p-col-dark;
             width: 50%;
             height: 100vh;
             padding: 30px;
             @include media('<=lg-phone') {
                 width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                ul {
+                    text-align: center;
+                }
+
+            }
+            .close-btn {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                color: $p-col-light;
             }
 
             li {
                 margin-bottom: 20px;
-                a {
+                a, button {
                     color: $p-col-light;
-                    font-size: 20px;
+                    font-size: 18px;
+                    @include media('<=tablet') {
+                        font-size: 16px;
+                    }
+                    &:hover, &:active {
+                        color: $p-col-light;
+                    }
                 }
             }
         }

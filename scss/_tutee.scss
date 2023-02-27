@@ -1,0 +1,86 @@
+.t_ {
+    &banner-wrap {
+        padding-top: 100px;
+        min-height: 100vh;
+    }
+    &course {
+        &-tutor {
+            &-card {
+                max-height: 60vh;
+                overflow-y: scroll;
+            }
+            thead {
+                tr {
+                    th {
+                        font-size: 14px;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    th {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+    &chat {
+        &-card {
+            max-height: 60vh;
+            overflow-y: scroll;
+        }
+        &-wrap {
+            a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+            }
+            // margin-bottom: 10px;
+            transition: all ease-in-out 300ms;
+            &:hover {
+                background-color: $modal-btn-hover;
+            }
+        }
+        &-img {
+            &-wrap {
+                img {
+                    height: 50px;
+                    width: 50px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+        }
+        &-user {
+            &-name {
+                margin-bottom: 0;
+                font-size: 16px;
+                font-weight: 600;
+                color: $p-col-txt;
+            }
+            &-msg {
+                font-size: 14px;
+                margin-bottom: 0;
+                color: $p-col-dark;
+            }
+        }
+    }
+    &rating {
+        &-star {
+            cursor: pointer;
+            color: $modal-btn-hover;
+            transition: all ease-in-out 300ms;
+            &:hover {
+                color: $stars;
+            }
+            &:hover ~ .t_rating-star{
+                color: $modal-btn-hover;
+            }
+            &.filled {
+                color: $stars;
+            }
+        }
+    }
+}

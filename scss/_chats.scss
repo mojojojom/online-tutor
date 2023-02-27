@@ -1,0 +1,25 @@
+.c_ {
+    &banner{
+        &-nav {
+            &-wrap {
+                padding: 15px;
+                min-height: 80px;
+                border-radius: 0;
+            }
+        }
+        &-wrap {
+            height: 100vh;
+            max-height: 100vh;
+            min-height: 100vh;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        &-chats {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: 100vh;
+            max-height: 100vh;
+            min-height: 100vh;
+        }
+    }
+}

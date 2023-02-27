@@ -1,0 +1,63 @@
+.r_ {
+    &register {
+        &-back-btn {
+            font-size: 14px;
+            color: $p-col;
+            transition: all ease-in-out 300ms;
+            display: block;
+            &:hover {
+                margin-left: -10px;
+            }
+        }
+        &-wrap {
+            height: 100vh;
+        }
+        &-inner-wrap {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            height: 100%;
+            padding: 20px;
+        }
+        &-left {
+            &-col {
+                height: 100%;
+                background-color: $p-col;
+                width: 50%;
+                border-radius: 15px;
+                background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(0,0,0,0.5) 0%), url('../images/register.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            &-content {
+                h3 {
+                    color: $p-col;
+                    font-weight: 600;
+                    margin-bottom: 0;
+                }
+                h1 {
+                    color: $p-col-light;
+                    font-weight: 600;
+                    line-height: 1.2em;
+                }
+            }
+        }
+        &-right {
+            &-col {
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            &-form {
+                &-wrap {
+                    width: 80%;
+                }
+            }
+        }
+    }
+}

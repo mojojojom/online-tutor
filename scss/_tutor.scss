@@ -1,0 +1,247 @@
+.t_ {
+    &banner-wrap {
+        padding-top: 100px;
+        min-height: 100vh;
+    }
+    &pending {
+        &-tutee {
+            &-card {
+                max-height: 60vh;
+                overflow-y: scroll;
+            }
+            thead {
+                tr {
+                    th {
+                        font-size: 14px;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    th {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+    &chat {
+        &-card {
+            max-height: 60vh;
+            overflow-y: scroll;
+        }
+        &-wrap {
+            a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+            }
+            // margin-bottom: 10px;
+            transition: all ease-in-out 300ms;
+            &:hover {
+                background-color: $modal-btn-hover;
+            }
+        }
+        &-img {
+            &-wrap {
+                img {
+                    height: 50px;
+                    width: 50px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+        }
+        &-user {
+            &-name {
+                margin-bottom: 0;
+                font-size: 16px;
+                font-weight: 600;
+                color: $p-col-txt;
+            }
+            &-msg {
+                font-size: 14px;
+                margin-bottom: 0;
+                color: $p-col-dark;
+            }
+        }
+    }
+    &applicants {
+        &-card {
+            transition: all ease-in-out 300ms;
+            &:hover {
+                background-color: $p-col;
+                p {
+                    color: $p-col-light;
+                    transition: all ease-in-out 300ms;
+                }
+            }
+        }
+        &-wrap {
+            display: flex;
+            gap: 10px;
+        }
+        &-img {
+            &-wrap {
+                img {
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 10px;
+                    object-fit: cover;
+                }
+            }
+        }
+        &-name {
+            font-size: 16px;
+            margin-bottom: 0;
+            color: $p-col-txt;
+            font-weight: 600;
+        }
+        &-course {
+            color: $p-col;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.sched_calendar {
+    .fc {
+        &-toolbar {
+            &-title {
+                font-size: 20px;
+                @include media('<=phone') {
+                    font-size: 18px;
+                }
+                @include media('<=sm-phone') {
+                    font-size: 16px;
+                }
+            }
+        }
+        &-today-button {
+            font-size: 14px;
+            @include media('<=phone') {
+                font-size: 12px;
+            }
+        }
+        &-button-group {
+            button {
+                font-size: 14px;
+                @include media('<=phone') {
+                    font-size: 12px;
+                }
+            }
+        }
+        // &-header-toolbar {
+        //     @include media('<=sm-phone') {
+        //         display: block;
+        //     }
+        // }
+    }
+}
+
+
+
+
+
+
+
+// SINGLE PAGE
+.tutor_ {
+    &profile {
+        &-stars {
+            i {
+                color: $stars;
+            }
+        }
+        &-review{
+            &-info {
+                &-wrap {
+                    &:last-child {
+                        font-size: 14px;
+                    }
+                }
+            }
+            p {
+                color: $p-col-link;
+            }
+            &-wrap {
+                margin-top: 0px;
+                margin-left: 60px;
+            }
+            &-main {
+                &-wrap {
+                    border-bottom: 1px solid $p-col-link;
+                }
+            }
+        }
+    }
+
+    // NEW ADDED TUTORS
+    &new-add {
+        transition: all ease-in-out 300ms;
+        &:hover {
+            background-color: $p-col;
+            a,h6, p {
+                transition: all ease-in-out 300ms;
+                color: $p-col-light;
+            }
+        }
+        h6 {
+            color: $p-col-dark;
+        }
+        p {
+            color: $p-col-link;
+        }
+    }
+
+    // CARD
+    &page {
+        &-card {
+            .card {
+                border-radius: 0!important;
+            }
+            &:hover {
+                p.tutor_name {
+                    color: $p-col;
+                }
+            }
+            &-img {
+                &-wrap {
+                    position: relative;
+                }
+                width: 100%;
+                object-fit: cover;
+                height: 200px;
+            }
+            &-body {
+                padding: 10px;
+                p.tutor_name {
+                    transition: all ease-in-out 300ms;
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: $p-col-dark;
+                }
+                p.tutor_course {
+                    color: $p-col-link;
+                    font-size: 16px;
+                }
+            }
+            &-stars {
+                p {
+                    color: $stars!important;
+                    font-weight: 500;
+                }
+                &-wrap {
+                    i, p {
+                        font-size: 14px;
+                    }
+                    p {
+                        color: $p-col-link;
+                    }
+                }
+            }
+        }
+    }
+}

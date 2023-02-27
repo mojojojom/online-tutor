@@ -19,6 +19,7 @@ $p-btn-hover: hsl(228, 67%, 51%);
 $p-btn-hover-sec: hsl(230, 88%, 93%);
 $modal-btn: hsl(240, 4%, 95%);
 $modal-btn-hover: hsl(0, 0%, 86%);
+$stars: hsl(51, 94%, 51%);
 
 *, *::before, *::after {
     margin: 0;
@@ -60,6 +61,7 @@ body {
     border: none;
     transition: all ease-in-out 300ms;
     font-size: 14px;
+    text-align: center;
     &-sm {
         padding: 5px 15px;
         &-primary {
@@ -84,6 +86,7 @@ body {
             }
         }
         &:hover {
+            color: $p-col-light;
             background: $p-btn-hover;
         }
     }
@@ -222,13 +225,63 @@ footer {
 }
 
 ::-webkit-scrollbar-track {
-    background: $p-col-light;
+    background: #b2b2b2;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: $p-col-txt;
+    background: $p-col-link;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: $p-col;
+}
+
+
+// INPUT TYPES
+input {
+    z-index: 10;
+}
+
+// SWEET ALERT
+.swal2-container {
+    z-index: 999999!important;
+}
+
+// MODAL INPUTS
+input.modal_input,
+.daterangepicker,
+.ui-timepicker-container {
+    z-index:999999!important;
+}
+
+// DISABLE
+.disabled {
+    cursor: not-allowed;
+    border-color: #6c757d;
+    pointer-events: none;
+}
+
+// HEADINGS
+.titles {
+    @include media('<=lg-phone')
+    {
+        font-size: 18px;
+    }
+}
+
+.border-bottom-1 {
+    border: none!important;
+    border-bottom: 1px solid #dee2e6!important;
+}
+.border-end-1 {
+    border: none!important;
+    border-right: 1px solid #dee2e6!important;
+    border-bottom: 1px solid #dee2e6!important;
+}
+
+.active-lists
+{
+    max-height: 300px;
+    overflow-y: auto;
+    min-height: 0;
 }
