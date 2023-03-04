@@ -42,7 +42,7 @@
                                     <input type="submit" name="login_tutor" id="login_tutor_btn" class="login_tutor_btn" value="Login">
                                 </div>
                                 <div class="mb-1 text-center">
-                                    <p class="mb-0"><a href="#">Forgot Password?</a></p>
+                                    <p class="mb-0"><a href="#" class="forgot_pass-btn">Forgot Password?</a></p>
                                 </div>
                                 <div class="mb-2 text-center">
                                     <p class="mb-0">Don't have an account? <a href="register.php?type=tutor" class="target_tutor">Sign Up</a></p>
@@ -574,6 +574,53 @@
                                 'error'
                             );
                         }
+                    }
+                });
+
+            })
+        })
+
+        // FORGOT PASSWORD
+        $(document).ready(function() {
+            $('.forgot_pass-btn').on('click', function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Please Enter your Email',
+                    html:
+                        '<input type="email" class="form-control" name="reset_pass-email" id="reset_pass-email" placeholder="Enter your registered email">',
+                    showCancelButton: true,
+                    confirmButtonText: 'RESET PASSWORD',
+                    preConfirm: () => {
+                        const email = document.getElementById('reset_pass-email');
+                        const formData = new FormData();
+                        formData.append('activity_file');
+                        formData.append('reset_email', email.value);
+                        return fetch('action.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                        })
+                        .catch(error => {
+                        Swal.showValidationMessage(
+                            `Request failed: ${error}`
+                        )
+                        })
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                    })
+                    .then(result => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: 'File uploaded',
+                            text: result.value.message,
+                            icon: 'success'
+                        });
                     }
                 });
 

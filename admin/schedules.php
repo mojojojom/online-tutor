@@ -51,7 +51,7 @@
         </aside>
 
         <!-- MAIN PAGE -->
-        <main id="main" class="main main-wrap">
+        <main id="main" class="main main-wrap px-1 px-md-4">
             <div class="pagetitle">
                 <h1>Schedules</h1>
                 <nav>
@@ -64,19 +64,19 @@
 
             <section class="admin_courses-wrap">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body p-2 p-md-3 p-lg-4">
 
-                        <table class="table table-striped table-bordered py-3" id="sched_table">
+                        <table class="table table-striped table-bordered py-3" style="width:100%" id="sched_table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Tutor Name</th>
-                                    <th scope="col">Course Name</th>
-                                    <th scope="col">Schedule Date</th>
-                                    <th scope="col">Start Time</th>
-                                    <th scope="col">End Time</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
+                                    <th class="d-none d-lg-table-cell">#</th>
+                                    <th>Tutor Name</th>
+                                    <th>Course Name</th>
+                                    <th class="d-none d-lg-table-cell">Schedule Date</th>
+                                    <th class="d-none d-lg-table-cell">Start Time</th>
+                                    <th class="d-none d-lg-table-cell">End Time</th>
+                                    <th class="d-none d-md-table-cell">Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -103,13 +103,14 @@
                                         $endTime = date('h:i', strtotime($etime));
                                 ?>
                                         <tr>
-                                            <th scope="row"><?=$count?></th>
+                                            <th scope="row" class="d-none d-lg-table-cell"><?=$count?></th>
                                             <td><?=$name?></td>
-                                            <td><?=$course_name?></td>
-                                            <td><?=$date?></td>
-                                            <td><?=$startTime?></td>
-                                            <td><?=$endTime?></td>
-                                            <td>
+                                            <td class="d-none d-lg-table-cell"><?=$course_name?></td>
+                                            <td class="d-table-cell d-lg-none"><?=$course['course_code']?></td>
+                                            <td class="d-none d-lg-table-cell"><?=$date?></td>
+                                            <td class="d-none d-lg-table-cell"><?=$startTime?></td>
+                                            <td class="d-none d-lg-table-cell"><?=$endTime?></td>
+                                            <td class="d-none d-md-table-cell">
                                                 <?php
                                                 if($row['status'] === 'Active')
                                                 {
@@ -125,7 +126,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td class="d-flex justify-content-around admin__table-actions">
+                                            <td class="text-center">
                                                 <a href="#" class="delete delete_sched-btn" data-id="<?=$row['sched_id']?>"><i class="fas fa-trash text-danger"></i></a>
                                             </td>
                                         </tr>
@@ -157,7 +158,7 @@
         $(document).ready(function () {
 
 
-            $('#sched_table').DataTable();
+            // $('#sched_table').DataTable();
 
             $('body').on('click', '.delete_sched-btn', function(e) {
                 e.preventDefault();

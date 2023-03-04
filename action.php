@@ -183,7 +183,6 @@
                                     $query = mysqli_query($db, "INSERT INTO tutors(u_id, username, f_name, l_name, email, about_me, my_tagline, course, y_lvl, password, num, dp, code, status, active_status) VALUES('$uid','$username','$fname', '$lname','$email', '$am', '$mt', '$course', '$lvl', '$hashedPass','$num','$new_img','$u_code','$status','$as')");
                                     if($query) 
                                     {
-                                        move_uploaded_file($img_temp, $store);
 
                                         $name = $fname. " " .$lname;
 
@@ -215,7 +214,6 @@
                                             header('Location: otp.php');
                                             exit();
                                         }
-                                        
                                     } 
                                     else 
                                     {
@@ -261,20 +259,95 @@
                 }
                 else
                 {
-                    // echo 'error'.mysqli_error($db);
-                    $_SESSION['message'] ='
-                        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center fw-bold" role="alert">
-                            UNABLE TO REGISTER!
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    ';
-                    header('Location: register.php?type=tutor');
-                    exit();
+                    if($pass === $cpass)
+                    {
+                        if(strlen($pass) <= 7) {
+                            $_SESSION['message'] ='
+                                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center fw-bold" role="alert">
+                                    PASSWORD MUST BE AT LEAST 8 CHARACTERS LONG!
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            ';
+                            header('Location: register.php?type=tutor');
+                            exit();
+                        }
+                        else
+                        {
+                            $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+    
+                            $u_code = rand(999999, 111111);
+                            $status = "No";
+                            $as = '0';
+                            $uid = uniqid('ot');
+                            $am = '';
+                            $mt = '';
+
+                            $query = mysqli_query($db, "INSERT INTO tutors(u_id, username, f_name, l_name, email, about_me, my_tagline, course, y_lvl, password, num, dp, code, status, active_status) VALUES('$uid','$username','$fname', '$lname','$email', '$am', '$mt', '$course', '$lvl', '$hashedPass','$num','','$u_code','$status','$as')");
+                            if($query) 
+                            {
+                                move_uploaded_file($img_temp, $store);
+
+                                $name = $fname. " " .$lname;
+
+                                // Create a new PHPMailer object
+                                $mail = new PHPMailer(true);
+
+                                // Configure PHPMailer
+                                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                                $mail->isSMTP();
+                                $mail->Host = 'smtp.hostinger.com';
+                                $mail->SMTPAuth = true;
+                                $mail->Username = 'prmsuccitmta@prmsuccitmobiletutoringapp.com';
+                                $mail->Password = 'r*239@*vBwHY';
+                                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                                $mail->Port = 465;
+
+                                // Set the recipients and message content
+                                $mail->setFrom('prmsuccitmta@prmsuccitmobiletutoringapp.com', 'PRMSU CCIT MTA');
+                                $mail->addAddress($email, $name);
+                                $mail->Subject = 'Verification Code';
+                                $mail->Body = 'Your OTP : "'.$u_code.'"';
+                                    
+                                // Send the email
+                                if (!$mail->send()) {
+                                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                                } else {
+                                    // echo 'Message sent!';
+                                    $_SESSION['email'] = $email;
+                                    header('Location: otp.php');
+                                    exit();
+                                }
+                            } 
+                            else 
+                            {
+                                $_SESSION['message'] ='
+                                    <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center fw-bold" role="alert">
+                                        UNABLE TO REGISTER!
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                ';
+                                header('Location: register.php?type=tutor');
+                                exit();
+                            }
+    
+                        }
+                    }
+                    else
+                    {
+                        // echo 'pass_match'.mysqli_error($db);
+                        $_SESSION['message'] ='
+                            <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center fw-bold" role="alert">
+                                PASSWORD DOESN\'T MATCHED!
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        ';
+                        header('Location: register.php?type=tutor');
+                        exit();
+                    }
                 }
             }
 
         }
-
         // TUTEE REGISTRATION
         if($_POST['action'] === 'r_tutee') {
             include('connection/connect.php');
@@ -498,21 +571,92 @@
                 }
                 else
                 {
-                    $_SESSION['message'] ='
-                        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center fw-bold" role="alert">
-                            UNABLE TO REGISTER!
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    ';
-                    header('Location: register.php?type=tutee');
-                    exit();
+                    if($pass === $cpass)
+                    {
+                        if(strlen($pass) <= 7) {
+                            $_SESSION['message'] ='
+                                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center fw-bold" role="alert">
+                                    PASSWORD MUST BE 8 CHARACTERS LONG!
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            ';
+                            header('Location: register.php?type=tutee');
+                            exit();
+                        }
+                        else
+                        {
+                            $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+    
+                            $u_code = rand(999999, 111111);
+                            $status = "No";
+                            $as = '0';
+    
+                            $query = mysqli_query($db, "INSERT INTO tutees(username, f_name, l_name, email, course, y_lvl, password, num, dp, code, status, active_status) VALUES('$username','$fname', '$lname','$email', '$course', '$lvl', '$hashedPass','$num','','$u_code','$status','$as')");
+                            if($query) 
+                            {
+
+                                $name = $fname. " " .$lname;
+
+                                // Create a new PHPMailer object
+                                $mail = new PHPMailer(true);
+
+                                // Configure PHPMailer
+                                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                                $mail->isSMTP();
+                                $mail->Host = 'smtp.hostinger.com';
+                                $mail->SMTPAuth = true;
+                                $mail->Username = 'prmsuccitmta@prmsuccitmobiletutoringapp.com';
+                                $mail->Password = 'r*239@*vBwHY';
+                                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                                $mail->Port = 465;
+
+                                // Set the recipients and message content
+                                $mail->setFrom('prmsuccitmta@prmsuccitmobiletutoringapp.com', 'PRMSU CCIT MTA');
+                                $mail->addAddress($email, $name);
+                                $mail->Subject = 'Verification Code';
+                                $mail->Body = 'Your OTP : "'.$u_code.'"';
+                                    
+                                // Send the email
+                                if (!$mail->send()) {
+                                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                                } else {
+                                    // echo 'Message sent!';
+                                    $_SESSION['email'] = $email;
+                                    header('Location: otp.php');
+                                    exit();
+                                }
+                            } 
+                            else 
+                            {
+                                // echo 'error'.mysqli_error($db);
+                                $_SESSION['message'] ='
+                                    <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center fw-bold" role="alert">
+                                        UNABLE TO REGISTER!
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                ';
+                                header('Location: register.php?type=tutee');
+                                exit();
+                            }
+    
+                        }
+                    }
+                    else
+                    {
+                        // echo 'pass_match';
+                        $_SESSION['message'] ='
+                            <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center fw-bold" role="alert">
+                                PASSWORD DOESN\'T MATCHED!
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        ';
+                        header('Location: register.php?type=tutee');
+                        exit();
+                    }
                 }
             }
 
         }
-
-
-
         //*************** LOGIN ***************//
         // TUTOR LOGIN
         if($_POST['action'] === 'tutor_login')
@@ -559,7 +703,6 @@
                 echo 'err_exists';
             }
         }
-
         // TUTEE LOGIN
         if($_POST['action'] === 'tutee_login')
         {
@@ -606,7 +749,6 @@
             }
 
         }
-
         // ADMIN LOGIN
         if($_POST['action'] === 'admin_login')
         {
@@ -639,7 +781,6 @@
             }
 
         }
-
         //*************** VERIFY ***************//
         if($_POST['action'] === 'verify_account')
         {
@@ -722,9 +863,6 @@
             }
 
         }
-
-
-
         //*************** APPOINTMENT FUNCTIONS ***************//
         // APPROVE APPLICANT
         if($_POST['action'] === 'approve')
@@ -804,9 +942,6 @@
             }
 
         }
-
-
-
         //*************** TUTEE FUNCTIONS ***************//
         if($_POST['action'] === 'book_sched')
         {
@@ -872,7 +1007,6 @@
             }
 
         }
-
         //*************** TUTOR FUNCTIONS ***************//
         if($_POST['action'] === 'set_meeting')
         {
@@ -900,9 +1034,6 @@
             }
 
         }
-
-
-
         //*************** TUTOR EDIT PROFILE ***************//
         if($_POST['action'] === 'edit_tutor')
         {
@@ -1042,9 +1173,6 @@
                 }
             }
         }
-
-
-        //*************** TUTEE EDIT PROFILE ***************//
         if($_POST['action'] === 'upload_cv')
         {
             require('connection/connect.php');
@@ -1088,7 +1216,7 @@
             }
 
         }
-
+        //*************** TUTEE EDIT PROFILE ***************//
         if($_POST['action'] === 'edit_tutee')
         {
             require('connection/connect.php');

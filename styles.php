@@ -1,3 +1,7 @@
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tutor</title>
         <!-- BOOTSTRAP -->
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <!-- JQUERY -->
@@ -19,3 +23,4 @@
         <link rel="stylesheet" href="node_modules/jquery-timepicker/jquery.timepicker.css">
         <!-- CUSTOM STYLE -->
         <link rel="stylesheet" href="style/style.min.css">
+</head>

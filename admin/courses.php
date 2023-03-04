@@ -51,7 +51,7 @@
         </aside>
 
         <!-- MAIN PAGE -->
-        <main id="main" class="main">
+        <main id="main" class="main px-1 px-md-4">
             <div class="pagetitle">
                 <h1>Courses</h1>
                 <nav>
@@ -70,7 +70,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Course Code</th>
+                                    <th scope="col" class="d-none d-md-table-cell">Course Code</th>
                                     <th scope="col">Course Name</th>
                                 </tr>
                             </thead>
@@ -84,7 +84,7 @@
                                 ?>
                                         <tr>
                                             <th scope="row"><?=$count?></th>
-                                            <td><?=$row['course_name']?></td>
+                                            <td class="d-none d-md-table-cell"><?=$row['course_name']?></td>
                                             <td><?=$row['course_code']?></td>
                                             <td class="d-flex justify-content-around admin__table-actions">
                                                 <a href="#editCourse<?=$row['id']?>" data-bs-toggle="modal" data-bs-target="#editCourse<?=$row['id']?>"><i class="fas fa-pen"></i></a>

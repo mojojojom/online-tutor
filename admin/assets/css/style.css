@@ -1269,3 +1269,14 @@ a {
 .hidden {
   display: none!important;
 }
+
+@media only screen and (max-width: 1024px)
+{
+  table.dataTable thead th, table.dataTable thead td {
+    font-size: 14px!important;
+  }
+  table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}

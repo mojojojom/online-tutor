@@ -29,3 +29,24 @@
         ?>
     </body>
 </html>
+
+<script>
+    jQuery(function($) {
+        $(document).ready(function() {
+            $('.navbar-toggler').on('click',function(event) {
+                var $trigger = $(".navbar-toggler");
+                if($trigger !== event.target && !$trigger.has(event.target).length){
+                    $(".navbar-collapse").collapse('hide');
+                }
+            });
+            });
+            
+            $(document).on("click", function(event){
+            var $trigger = $(".navbar-toggler");
+            if($trigger !== event.target && !$trigger.has(event.target).length){
+                $(".navbar-collapse").collapse('hide');
+            }
+        });
+        
+    })
+</script>

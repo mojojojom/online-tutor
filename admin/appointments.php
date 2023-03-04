@@ -51,7 +51,7 @@
         </aside>
 
         <!-- MAIN PAGE -->
-        <main id="main" class="main main-wrap">
+        <main id="main" class="main main-wrap px-1 px-md-4">
             <div class="pagetitle">
                 <h1>Appointments</h1>
                 <nav>
@@ -64,19 +64,19 @@
 
             <section class="admin_courses-wrap">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body p-2 p-md-3 p-lg-4">
 
                         <table class="table table-striped table-bordered py-3" style="width:100%" id="appointments_table">
                             
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th class="d-none d-lg-table-cell">#</th>
                                     <th>Tutor Name</th>
                                     <th>Course Name</th>
-                                    <th>Tutee Name</th>
-                                    <th>Schedule Date</th>
-                                    <th>Application Status</th>
-                                    <th>Status</th>
+                                    <th class="d-none d-lg-table-cell">Tutee Name</th>
+                                    <th class="d-none d-lg-table-cell">Schedule Date</th>
+                                    <th class="d-none d-lg-table-cell">Application Status</th>
+                                    <th class="d-none d-lg-table-cell">Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -108,12 +108,13 @@
                                         $endTime = date('h:i', strtotime($etime));
                                 ?>
                                         <tr>
-                                            <th><?=$count?></th>
+                                            <th class="d-none d-lg-table-cell"><?=$count?></th>
                                             <td><?=$name?></td>
-                                            <td><?=$course_name?></td>
-                                            <td><?=$fullname?></td>
-                                            <td><?=$date?></td>
-                                            <td>
+                                            <td class="d-none d-lg-table-cell"><?=$course_name?></td>
+                                            <td class="d-table-cell d-lg-none"><?=$course['course_code']?></td>
+                                            <td class="d-none d-lg-table-cell"><?=$fullname?></td>
+                                            <td class="d-none d-lg-table-cell"><?=$date?></td>
+                                            <td class="d-none d-lg-table-cell">
                                                 <?php
                                                     if($row['app_status'] === 'Done')
                                                     {
@@ -148,7 +149,7 @@
                                                 ?>
                                                 <span class="badge fw-bold shadow-sm <?=$card_class?> <?=$text_class?>"><?=$row['app_status']?></span>
                                             </td>
-                                            <td>
+                                            <td class="d-none d-lg-table-cell">
                                                 <?php
                                                 if($row['status'] === '1')
                                                 {
@@ -166,7 +167,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <a class="mx-1" href="#viewApp-<?=$row['sched_id']?>" data-bs-toggle="modal" data-bs-target="#viewApp-<?=$row['sched_id']?>"><i class="fas fa-eye"></i></a>
-                                                <a class="mx-1 delete delete_app-btn" href="#" class="delete delete_app-btn" data-id="<?=$row['sched_id']?>"><i class="fas fa-trash text-danger"></i></a>
+                                                <a class="mx-1 delete delete_app-btn" href="#" data-id="<?=$row['sched_id']?>"><i class="fas fa-trash text-danger"></i></a>
                                             </td>
                                         </tr>
                                 <?php
@@ -343,7 +344,7 @@
 <script>
     jQuery(function($) {
         $(document).ready(function () {
-            $('#appointments_table').DataTable();
+            // $('#appointments_table').DataTable();
 
             // DELETE APPOINTMENT 
             $('body').on('click', '.delete_app-btn', function(e) {

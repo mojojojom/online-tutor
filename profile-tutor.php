@@ -65,7 +65,22 @@
                                                 <?php
                                                 }
                                                 ?>
+                                                <!-- DISPLAY IMAGE -->
+                                                <?php
+                                                if(empty($fetch['dp']))
+                                                {
+                                                ?>
+                                                <img style="object-fit: cover; width: 180px; height: 180px; border-radius: 100%;" src="/images/DEFAULT/user_icon.png" alt="User Image">
+                                                <?php
+                                                }
+                                                else
+                                                {
+                                                ?>
                                                 <img style="object-fit: cover; width: 180px; height: 180px; border-radius: 100%;" src="uploads/tutors/<?=$fetch['dp']?>" alt="User Image">
+                                                <?php
+                                                }
+                                                ?>
+
                                             </div>
                                             <div class="tutor_profile-info-wrap text-center mb-3">
                                                 <h5 class="fw-semibold d-flex align-items-center gap-2 justify-content-center">

@@ -44,7 +44,20 @@
                                         <div class="card">
                                             <a href="tutor-profile.php?id=<?=$tutor['tutor_id']?>">
                                                 <div class="tutor_page-card-img-wrap">
+                                                    <?php
+                                                    if(empty($user['dp']))
+                                                    {
+                                                    ?>
+                                                    <img src="images/DEFAULT/user_icon.png" alt="" class="tutor_page-card-img">
+                                                    <?php
+                                                    }
+                                                    else
+                                                    {
+                                                    ?>
                                                     <img src="uploads/tutors/<?=$user['dp']?>" alt="" class="tutor_page-card-img">
+                                                    <?php
+                                                    }
+                                                    ?>
                                                     <?php
                                                     if($tutor['active_status'] === '1')
                                                     {
@@ -182,7 +195,21 @@
                                         <div class="card mb-2 tutor_new-add">
                                             <a href="tutor-profile.php?id=<?=$tutor['u_id']?>" class="p-1">
                                                 <div class="c_course-right-main-wrap d-flex align-items-start gap-2">
+
+                                                    <?php
+                                                    if(empty($user['dp']))
+                                                    {
+                                                    ?>
+                                                    <img class="img-thumbnail" src="images/DEFAULT/user_icon.png" style="height: 80px; width:30%; object-fit:cover;" alt="">
+                                                    <?php
+                                                    }
+                                                    else
+                                                    {
+                                                    ?>
                                                     <img class="img-thumbnail" src="uploads/tutors/<?=$tutor['dp']?>" style="height: 80px; width:30%; object-fit:cover;" alt="">
+                                                    <?php
+                                                    }
+                                                    ?>
                                                     <div>
                                                         <h6 class="mb-0 fw-semibold"><?=$tutor['f_name']." ".$tutor['l_name']?></h6>
                                                         <p class="mb-0" style="font-size: 14px;"><?=$tutor['course']."-".$tutor['y_lvl']?></p>

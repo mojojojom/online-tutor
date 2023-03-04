@@ -450,7 +450,20 @@
                                             <div class="row">
 
                                                 <div class="col-12 mb-3 text-center">
+                                                    <?php
+                                                    if(empty($info['dp']))
+                                                    {
+                                                    ?>
+                                                    <img class=" border border-3 border-primary p-1" src="images/DEFAULT/user_icon.png" alt="Display Picture" style="width:150px; height: 150px;object-fit:cover;border-radius: 50%;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                                                    <?php
+                                                    }
+                                                    else
+                                                    {
+                                                    ?>
                                                     <img class=" border border-3 border-primary p-1" src="uploads/tutees/<?=$info['dp']?>" alt="Display Picture" style="width:150px; height: 150px;object-fit:cover;border-radius: 50%;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
 
                                                 <div class="col-md-6 mb-3">

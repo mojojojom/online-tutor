@@ -21,17 +21,14 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="c_course-left-nav-search-wrap">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter tutor name">
-                                            <div class="c_course-left-nav-search-btn">
-                                                <a href="#" class="d-flex align-items-center gap-2 justify-content-center">SEARCH<i class="fa-solid fa-magnifying-glass"></i></a>
-                                            </div>
+                                            <input type="text" class="form-control" id="searchTutor" aria-describedby="emailHelp" placeholder="Enter tutor name">
                                         </div>
                                     </div>
                                 </div>
                             </nav>
                         </div>
 
-                        <div class="row">
+                        <div class="row" id="tutors_list-wrap">
                             <?php
                             $query = mysqli_query($db, "SELECT * FROM tutors WHERE status='Yes'");
                             if(mysqli_num_rows($query) > 0) {
@@ -43,7 +40,20 @@
                                         <div class="card">
                                             <a href="tutor-profile.php?id=<?=$tutor['u_id']?>">
                                                 <div class="tutor_page-card-img-wrap">
+                                                    <?php
+                                                    if(empty($row['dp']))
+                                                    {
+                                                    ?>
+                                                    <img src="images/DEFAULT/user_icon.png" alt="" class="tutor_page-card-img">
+                                                    <?php
+                                                    }
+                                                    else
+                                                    {
+                                                    ?>
                                                     <img src="uploads/tutors/<?=$tutor['dp']?>" alt="" class="tutor_page-card-img">
+                                                    <?php
+                                                    }
+                                                    ?>
                                                     <?php
                                                     if($tutor['active_status'] === '1')
                                                     {
@@ -101,7 +111,20 @@
                                         <div class="card mb-2 tutor_new-add">
                                             <a href="tutor-profile.php?id=<?=$tutor['u_id']?>" class="p-1">
                                                 <div class="c_course-right-main-wrap d-flex align-items-start gap-2">
+                                                    <?php
+                                                    if(empty($row['dp']))
+                                                    {
+                                                    ?>
+                                                    <img class="img-thumbnail" src="images/DEFAULT/user_icon.png" style="height: 80px; width:30%; object-fit:cover;" alt="">
+                                                    <?php
+                                                    }
+                                                    else
+                                                    {
+                                                    ?>
                                                     <img class="img-thumbnail" src="uploads/tutors/<?=$tutor['dp']?>" style="height: 80px; width:30%; object-fit:cover;" alt="">
+                                                    <?php
+                                                    }
+                                                    ?>
                                                     <div>
                                                         <h6 class="mb-0 fw-semibold"><?=$tutor['f_name']." ".$tutor['l_name']?></h6>
                                                         <p class="mb-0" style="font-size: 14px;"><?=$tutor['course']."-".$tutor['y_lvl']?></p>
@@ -134,3 +157,28 @@
 <?php
     include('footer.php');
 ?>
+
+<script>
+
+    jQuery(function($) {
+        $(document).ready(function() {
+            $("#searchTutor").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#tutors_list-wrap .tutor_page-card").filter(function() {
+                var match = $(this).text().toLowerCase().indexOf(value) > -1;
+                if (match) {
+                    $(this).show();
+                    $(this).animate({ opacity: 1 }, 200);
+                } else {
+                    $(this).animate({ opacity: 0 }, 200, function() {
+                    $(this).hide();
+                    });
+                }
+                return match;
+                });
+            });
+        });
+
+    })
+
+</script>

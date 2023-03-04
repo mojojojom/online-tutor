@@ -51,7 +51,7 @@
         </aside>
 
         <!-- MAIN PAGE -->
-        <main id="main" class="main main-wrap">
+        <main id="main" class="main main-wrap px-1 px-md-4">
 
             <div class="pagetitle">
                 <h1>Tutors</h1>
@@ -65,15 +65,15 @@
 
             <section class="admin_tutors-wrap">
                 <div class="card">
-                    <div class="card-body" id="tutors_list">
+                    <div class="card-body p-2 p-md-3 p-lg-4" id="tutors_list">
                         
                         <table class="table table-bordered table-striped py-3" style="width: 100%" id="tutors_table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col" class="d-none d-md-table-cell">Image</th>
+                                    <th scope="col" class="d-none d-md-table-cell">#</th>
+                                    <th scope="col" class="d-none d-lg-table-cell">Image</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Username</th>
+                                    <th scope="col" class="d-none d-lg-table-cell">Username</th>
                                     <th scope="col" class="d-none d-lg-table-cell">Email</th>
                                     <th scope="col" class="d-none d-lg-table-cell">Program/Year</th>
                                     <th scope="col" class="d-none d-md-table-cell">Phone No.</th>
@@ -91,10 +91,25 @@
                                         $yc = $row['course']. " - " .$row['y_lvl'];
                                 ?>
                                         <tr>
-                                            <th scope="row"><?=$count?></th>
-                                            <td class="d-none d-md-table-cell"><img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../uploads/tutors/<?=$row['dp']?>" alt=""></td>
+                                            <th class="d-none d-md-table-cell" scope="row"><?=$count?></th>
+                                            <td class="d-none d-lg-table-cell">
+                                                <?php
+                                                if(empty($row['dp']))
+                                                {
+                                                ?>
+                                                <img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../images/DEFAULT/user_icon.png" alt="">
+                                                <?php
+                                                }
+                                                else
+                                                {
+                                                ?>
+                                                <img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../uploads/tutors/<?=$row['dp']?>" alt="">
+                                                <?php
+                                                }
+                                                ?>
+                                            </td>
                                             <td><?=$name?></td>
-                                            <td><?=$row['username']?></td>
+                                            <td class="d-none d-lg-table-cell"><?=$row['username']?></td>
                                             <td class="d-none d-lg-table-cell"><?=$row['email']?></td>
                                             <td class="d-none d-lg-table-cell"><?=$yc?></td>
                                             <td class="d-none d-md-table-cell"><?=$row['num']?></td>
@@ -316,7 +331,7 @@
     jQuery(function($) {
         $(document).ready(function() {
 
-            $('#tutors_table').DataTable();
+            // $('#tutors_table').DataTable();
 
             // Show and hide edit form
             $('body').on('click', '.show-edit-tutor, .show-view-tutor', function(e) {

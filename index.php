@@ -156,7 +156,20 @@
                                     <a href="tutor-profile.php?id=<?=$row['u_id']?>" class="img-link">
                                         <i class="fa-solid fa-link"></i>
                                         <div class="overlay rounded"></div>
+                                        <?php
+                                        if(empty($row['dp']))
+                                        {
+                                        ?>
+                                        <img src="images/DEFAULT/user_icon.png" class="img-fluid rounded" alt="">
+                                        <?php
+                                        }
+                                        else
+                                        {
+                                        ?>
                                         <img src="uploads/tutors/<?=$row['dp']?>" class="img-fluid rounded" alt="">
+                                        <?php
+                                        }
+                                        ?>
                                     </a>
                                     <div class="h_tutors-desc-wrap">
                                         <h4 class="mb-0"><?=$fullname?></h4>

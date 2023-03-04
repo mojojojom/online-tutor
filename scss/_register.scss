@@ -22,8 +22,6 @@
         &-left {
             &-col {
                 height: 100%;
-                background-color: $p-col;
-                width: 50%;
                 border-radius: 15px;
                 background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(0,0,0,0.5) 0%), url('../images/register.jpg');
                 background-position: center center;
@@ -32,6 +30,17 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                @include media('<=tablet')
+                {
+                    height: 50%;
+                    margin-bottom: 20px;
+                }
+                @include media('<=lg-phone')
+                {
+                    height: 15%;
+                    margin-bottom: 20px;
+                    text-align: center;
+                }
             }
             &-content {
                 h3 {
@@ -43,19 +52,31 @@
                     color: $p-col-light;
                     font-weight: 600;
                     line-height: 1.2em;
+                    @include media("<=lg-phone")
+                    {
+                        font-size: 25px;
+                    }
                 }
             }
         }
         &-right {
             &-col {
-                width: 50%;
+                // width: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                @include media("<=tablet")
+                {
+                    padding: 20px 0;
+                }
             }
             &-form {
                 &-wrap {
                     width: 80%;
+                    @include media("<=tablet")
+                    {
+                        width: 100%;
+                    }
                 }
             }
         }

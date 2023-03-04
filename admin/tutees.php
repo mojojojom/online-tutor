@@ -51,7 +51,7 @@
         </aside>
 
         <!-- MAIN PAGE -->
-        <main id="main" class="main main-wrap">
+        <main id="main" class="main main-wrap px-1 px-md-4">
             <div class="pagetitle">
                 <h1>Tutees</h1>
                 <nav>
@@ -64,15 +64,15 @@
 
             <section class="admin_tutees-wrap">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body p-2 p-md-3 p-lg-4">
                         
                     <table class="table table-striped table-bordered py-3" style="width:100%" id="tutees_table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col" class="d-none d-md-table-cell">Image</th>
+                                <th scope="col" class="d-none d-md-table-cell">#</th>
+                                <th scope="col" class="d-none d-lg-table-cell">Image</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Username</th>
+                                <th scope="col" class="d-none d-lg-table-cell">Username</th>
                                 <th scope="col" class="d-none d-lg-table-cell">Email</th>
                                 <th scope="col" class="d-none d-lg-table-cell">Program/Year</th>
                                 <th scope="col" class="d-none d-md-table-cell">Phone No.</th>
@@ -90,10 +90,25 @@
                                     $yc = $row['course']. " - " .$row['y_lvl'];
                             ?>
                                     <tr>
-                                        <th scope="row"><?=$count?></th>
-                                        <td class="d-none d-md-table-cell"><img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../uploads/tutees/<?=$row['dp']?>" alt=""></td>
+                                        <th scope="row" class="d-none d-md-table-cell"><?=$count?></th>
+                                        <td class="d-none d-lg-table-cell">
+                                            <?php
+                                            if(empty($row['dp']))
+                                            {
+                                            ?>
+                                            <img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../images/DEFAULT/user_icon.png" alt="">
+                                            <?php
+                                            }
+                                            else
+                                            {
+                                            ?>
+                                            <img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../uploads/tutees/<?=$row['dp']?>" alt="">
+                                            <?php
+                                            }
+                                            ?>
+                                        </td>
                                         <td><?=$name?></td>
-                                        <td><?=$row['username']?></td>
+                                        <td class="d-none d-lg-table-cell"><?=$row['username']?></td>
                                         <td class="d-none d-lg-table-cell"><?=$row['email']?></td>
                                         <td class="d-none d-lg-table-cell"><?=$yc?></td>
                                         <td class="d-none d-md-table-cell"><?=$row['num']?></td>
@@ -281,7 +296,7 @@
     jQuery(function($) {
         $(document).ready(function() {
 
-            $('#tutees_table').DataTable();
+            // $('#tutees_table').DataTable();
 
             // Show and hide edit form
             $('body').on('click', '.show-edit-tutee, .show-view-tutee', function(e) {
@@ -429,4 +444,80 @@
 
         })
     })
+</script>
+
+
+<script>
+
+jQuery(function($) {
+    // Get the pagination container
+    var paginateContainer = $('#job-list-paginate');
+
+    // Get the previous and next buttons
+    var prevButton = paginateContainer.find('#paginate-prev');
+    var nextButton = paginateContainer.find('#paginate-next');
+
+    // Get the page links container
+    var pageLinksContainer = paginateContainer.find('.page-numbers');
+
+    // Disable the previous button on the first page
+    if (pageLinksContainer.find('.current').text() === '1') {
+        prevButton.addClass('paginate-disabled');
+    }
+
+    // Disable the next button on the last page
+    if (pageLinksContainer.find('.current').text() === pageLinksContainer.find('.page-numbers').last().text()) {
+        nextButton.addClass('paginate-disabled');
+    }
+
+    // Handle the click event of the previous button
+    prevButton.on('click', function(e) {
+        e.preventDefault();
+
+        // Get the previous page number
+        var prevPage = parseInt(pageLinksContainer.find('.current').text()) - 1;
+
+        // Disable the previous button if we are on the first page
+        if (prevPage === 1) {
+            prevButton.addClass('paginate-disabled');
+        }
+
+        // Enable the next button
+        nextButton.removeClass('paginate-disabled');
+
+        // Set the current page number
+        pageLinksContainer.find('.current').removeClass('current');
+        pageLinksContainer.find('.page-numbers').eq(prevPage - 1).addClass('current');
+
+        // Load the previous page via AJAX
+        var ajaxUrl = pageLinksContainer.find('.current').attr('href') + ' #job_offers-wrap';
+        $('#job_offers-wrap').load(ajaxUrl);
+    });
+
+    // Handle the click event of the next button
+    nextButton.on('click', function(e) {
+        e.preventDefault();
+
+        // Get the next page number
+        var nextPage = parseInt(pageLinksContainer.find('.current').text()) + 1;
+
+        // Disable the next button if we are on the last page
+        if (nextPage === parseInt(pageLinksContainer.find('.page-numbers').last().text())) {
+            nextButton.addClass('paginate-disabled');
+        }
+
+        // Enable the previous button
+        prevButton.removeClass('paginate-disabled');
+
+        // Set the current page number
+        pageLinksContainer.find('.current').removeClass('current');
+        pageLinksContainer.find('.page-numbers').eq(nextPage - 1).addClass('current');
+
+        // Load the next page via AJAX
+        var ajaxUrl = pageLinksContainer.find('.current').attr('href') + ' #job_offers-wrap';
+        $('#job_offers-wrap').load(ajaxUrl);
+    });
+});
+
+
 </script>

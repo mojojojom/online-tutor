@@ -82,9 +82,9 @@
                         }
                     }
                 }   
-            }
-            @include media('<=tablet') {
-                gap: 0px;
+                @include media('<=tablet') {
+                    gap: 0px;
+                }
             }
         }
         &-toggler {

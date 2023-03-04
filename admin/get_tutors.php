@@ -26,7 +26,22 @@ require('../connection/connect.php');
     ?>
             <tr>
                 <th scope="row"><?=$count?></th>
-                <td class="d-none d-md-table-cell"><img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../uploads/tutors/<?=$row['dp']?>" alt=""></td>
+                <td class="d-none d-lg-table-cell">
+                    <?php
+                    if(empty($row['dp']))
+                    {
+                    ?>
+                    <img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../images/DEFAULT/user_icon.png" alt="">
+                    <?php
+                    }
+                    else
+                    {
+                    ?>
+                    <img class="img-thumbnail" style="height: 50px; width: 50px; object-fit:cover;" src="../uploads/tutors/<?=$row['dp']?>" alt="">
+                    <?php
+                    }
+                    ?>
+                </td>
                 <td><?=$name?></td>
                 <td><?=$row['username']?></td>
                 <td class="d-none d-lg-table-cell"><?=$row['email']?></td>
