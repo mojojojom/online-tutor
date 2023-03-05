@@ -1355,6 +1355,163 @@
             }
         }
 
+        //*************** RESET PASSWORD ***************//
+        if($_POST['action'] === 'check_email')
+        {
+            require_once('connection/connect.php');
+
+            $email = mysqli_real_escape_string($db, $_POST['email']);
+            $reset_code = uniqid('rp');
+
+            // Check if email exists in database
+            $check_email_tutor = mysqli_query($db, "SELECT email FROM tutors WHERE email='$email'");
+            $check_email_tutee = mysqli_query($db, "SELECT email FROM tutees WHERE email='$email'");
+            if(mysqli_num_rows($check_email_tutor) > 0)
+            {
+                // Email exists, generate reset code and store in reset_pass table
+                $check_reset_pass_query = mysqli_query($db, "SELECT email FROM reset_pass WHERE email='$email'");
+                if (mysqli_num_rows($check_reset_pass_query) > 0)
+                {
+                    $query = mysqli_query($db, "UPDATE reset_pass SET reset_code='$reset_code' WHERE email='$email'");
+                }
+                else
+                {
+                    $query = mysqli_query($db, "INSERT INTO reset_pass(reset_code, email, type) VALUES('$reset_code', '$email', 'Tutor')");
+                }
+
+                // Send email to user
+                // Create a new PHPMailer object
+                $mail = new PHPMailer(true);
+
+                // Configure PHPMailer
+                $mail->isSMTP();
+                $mail->Host = 'smtp.hostinger.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'prmsuccitmta@prmsuccitmobiletutoringapp.com';
+                $mail->Password = 'r*239@*vBwHY';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port = 465;
+
+                // Set the recipients and message content
+                $mail->setFrom('prmsuccitmta@prmsuccitmobiletutoringapp.com', 'PRMSU CCIT MTA');
+                $mail->addAddress($email);
+                $mail->Subject = 'Password Reset';
+                $mail->Body = '<p>To reset your password, click on this <a href="http://' . $_SERVER['HTTP_HOST'] . '/reset.php?request_code=' . $reset_code . '"><b>LINK</b></a></p><br>Disregard this message if you didn\t request for password reset.';
+
+                $mail->send();
+
+                // Send the email
+                if (!$mail->send()) 
+                {
+                    echo 'error'.mysqli_error($db);
+                } 
+                else 
+                {
+                    echo 'success';
+                }
+            }
+            else if(mysqli_num_rows($check_email_tutee) > 0)
+            {
+                // Email exists, generate reset code and store in reset_pass table
+                $check_reset_pass_query = mysqli_query($db, "SELECT email FROM reset_pass WHERE email='$email'");
+                if (mysqli_num_rows($check_reset_pass_query) > 0)
+                {
+                    $query = mysqli_query($db, "UPDATE reset_pass SET reset_code='$reset_code' WHERE email='$email'");
+                }
+                else
+                {
+                    $query = mysqli_query($db, "INSERT INTO reset_pass(reset_code, email, type) VALUES('$reset_code', '$email', 'Tutee')");
+                }
+
+                // Send email to user
+                // Create a new PHPMailer object
+                $mail = new PHPMailer(true);
+
+                // Configure PHPMailer
+                $mail->isSMTP();
+                $mail->Host = 'smtp.hostinger.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'prmsuccitmta@prmsuccitmobiletutoringapp.com';
+                $mail->Password = 'r*239@*vBwHY';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port = 465;
+
+                // Set the recipients and message content
+                $mail->setFrom('prmsuccitmta@prmsuccitmobiletutoringapp.com', 'PRMSU CCIT MTA');
+                $mail->addAddress($email);
+                $mail->Subject = 'Password Reset';
+                $mail->Body = '<p>To reset your password, click on this <a href="http://' . $_SERVER['HTTP_HOST'] . '/reset.php?request_code=' . $reset_code . '"><b>LINK</b></a></p><br>Disregard this message if you didn\t request for password reset.';
+
+                $mail->send();
+
+                // Send the email
+                if (!$mail->send()) 
+                {
+                    echo 'error'.mysqli_error($db);
+                } 
+                else 
+                {
+                    echo 'success';
+                }
+            }
+            else
+            {
+                echo 'err_exists';
+            }
+        }
+
+        if($_POST['action'] === 'reset_pass')
+        {
+            require_once('connection/connect.php');
+        
+            $fpass = mysqli_real_escape_string($db, $_POST['fpass']);
+            $spass = mysqli_real_escape_string($db, $_POST['spass']);
+            $rcode = mysqli_real_escape_string($db, $_POST['rcode']);
+        
+            $get_email_type = mysqli_query($db, "SELECT email, type FROM reset_pass WHERE reset_code='$rcode'");
+        
+            if(mysqli_num_rows($get_email_type) > 0)
+            {
+                if($fpass === $spass)
+                {
+                    if(strlen($fpass) <= 7)
+                    {
+                        echo 'short_pass';
+                    }
+                    else
+                    {
+                        $row = mysqli_fetch_assoc($get_email_type);
+                        $email = $row['email'];
+                        $type = $row['type'];
+                        $hashedPass = password_hash($fpass, PASSWORD_DEFAULT);
+                        if($type === 'Tutor')
+                        {
+                            $update_pass = mysqli_query($db, "UPDATE tutors SET password='$hashedPass' WHERE email='$email'");
+                            echo $update_pass ? 'success' : 'err_not';
+                        }
+                        else if($type === 'Tutee')
+                        {
+                            $update_pass = mysqli_query($db, "UPDATE tutees SET password='$hashedPass' WHERE email='$email'");
+                            echo $update_pass ? 'success' : 'err_not';
+                        }
+                        else
+                        {
+                            echo 'error';
+                        }
+                    }
+                }
+                else
+                {
+                    echo 'not_matched';
+                }
+            }
+            else
+            {
+                echo 'error';
+            }
+        }
+        
+
 
     }
 
